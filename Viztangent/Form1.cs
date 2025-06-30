@@ -62,15 +62,15 @@ namespace Viztangent
         {
             userInput.Text = string.Empty;
             RichTextBox rtb = new RichTextBox();
-            rtb.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
+            rtb.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Pixel);
             rtb.ReadOnly = true;
             rtb.BorderStyle = BorderStyle.None;
             rtb.BackColor = panel1.BackColor;
             rtb.ScrollBars = RichTextBoxScrollBars.None;
             rtb.Multiline = true;
 
-            Font boldFont = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
-            Font normalFont = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Font boldFont = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Pixel);
+            Font normalFont = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
 
             string prefix = isUserInput ? "User :  " : "AI :  ";
             string fullText = prefix + labelText;
