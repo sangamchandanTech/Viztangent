@@ -33,13 +33,12 @@ namespace Viztangent
                 }
                 if (apiResponse.answer.Contains("json"))
                 {
+                    AddLabel("Your area of interest has been confirmed and is now being processed.");    
                     var answer = apiResponse.answer.ToString().Replace("```", "").Trim().Replace("json", "").Trim();
                     var addressDetails = JsonSerializer.Deserialize<Maps>(answer);
                     if (addressDetails != null)
                     {
-                        //MessageBox.Show($"Address : {addressDetails.address}\nRadius : {addressDetails.radius} ");
                         ExecutePythonScript(addressDetails.address, addressDetails.radius);
-                        AddLabel("Data Imported to AutoCAD");
                     }
                     else
                     {
@@ -152,7 +151,7 @@ namespace Viztangent
                     AddLabel("We couldn't recognize that address. Please double-check the spelling and formatting, and try again using a full address (e.g., “123 Main St, Austin, TX 78701”). ");
                 }
                 
-                AddLabel("Your area of interest has been successfully processed and is now being imported into AutoCAD.");
+                AddLabel("Your area of interest has now been imported into AutoCAD.");
             }
         }
     }
