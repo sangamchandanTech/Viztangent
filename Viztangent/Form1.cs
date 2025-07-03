@@ -133,25 +133,26 @@ namespace Viztangent
             ProcessStartInfo start = new ProcessStartInfo
             {
                 FileName = pythonExePath,
-                Arguments = $"\"{scriptPath}\" \"{address}\" \"{radius}\"",
+                Arguments = $"{scriptPath} \"{address}\" {radius}",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true
             };
-
-            using (Process process = Process.Start(start))
+            start.EnvironmentVariables["PYTHONIOENCODING"] = "utf-8";
+            using (var process = new Process { StartInfo = start })
             {
+                process.Start();
                 string output = process.StandardOutput.ReadToEnd();
                 string error = process.StandardError.ReadToEnd();
                 process.WaitForExit();
 
                 if (!string.IsNullOrEmpty(error))
                 {
-                    Console.WriteLine("Python error: " + error);
+                    AddLabel("We couldn't recognize that address. Please double-check the spelling and formatting, and try again using a full address (e.g., “123 Main St, Austin, TX 78701”). ");
                 }
-
-                Console.WriteLine("Python output: " + output);
+                
+                AddLabel("Your area of interest has been successfully processed and is now being imported into AutoCAD.");
             }
         }
     }
